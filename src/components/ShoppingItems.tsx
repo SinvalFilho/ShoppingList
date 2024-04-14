@@ -5,12 +5,13 @@ interface Todo {
   id: number;
   text: string;
   completed: boolean;
+  category: string;
 }
 
 interface ShoppingItemsProps {
   todos: Todo[];
   onToggleTodo: (id: number) => void;
-  onRemoveTodo: (id: number) => void; // Função para remover o item
+  onRemoveTodo: (id: number) => void;
 }
 
 const ShoppingItems: React.FC<ShoppingItemsProps> = ({
@@ -26,8 +27,9 @@ const ShoppingItems: React.FC<ShoppingItemsProps> = ({
           id={todo.id}
           text={todo.text}
           completed={todo.completed}
+          category={todo.category}
           onToggle={() => onToggleTodo(todo.id)}
-          onRemove={onRemoveTodo}
+          onRemove={() => onRemoveTodo(todo.id)}
         />
       ))}
     </ul>
