@@ -1,11 +1,13 @@
 import * as React from "react";
 import ListItem from "./ListItem";
 
+
 interface Todo {
   id: number;
   text: string;
   completed: boolean;
   category: string;
+  quantity: number;
 }
 
 interface ShoppingItemsProps {
@@ -28,6 +30,7 @@ const ShoppingItems: React.FC<ShoppingItemsProps> = ({
           text={todo.text}
           completed={todo.completed}
           category={todo.category}
+          quantity={todo.quantity}
           onToggle={() => onToggleTodo(todo.id)}
           onRemove={() => onRemoveTodo(todo.id)}
         />

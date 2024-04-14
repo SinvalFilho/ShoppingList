@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import AddItemForm from "./components/AddItemForm";
 import ShoppingItems from "./components/ShoppingItems";
-
+import Search from "./components/Search";
 
 interface Todo {
   id: number;
@@ -14,7 +14,8 @@ interface Todo {
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  
+  const [search, setSearch] = useState<string>("");
+
   const categories: string[] = ["Alimento", "Limpeza", "Petz", "Automovel", "Outros"];
 
   const handleAddTodo = (text: string, category: string) => {
@@ -45,16 +46,26 @@ const App: React.FC = () => {
     setSelectedCategory(category);
   };
 
+  const handleSearchChange = (newSearch: string) => {
+    setSearch(newSearch);
+  };
+
   return (
     <div id="container">
-      {/* categorias */}
-      <Header categories={categories} onCategoryFilter={handleCategoryFilter} />
+      <Header
+        categories={categories}
+        onCategoryFilter={handleCategoryFilter}
+        onSearchChange={handleSearchChange}
+        search={search}
+      />
+      <Search search={search} setSearch={handleSearchChange} />
       <div id="task-write">
         <AddItemForm onAddTodo={handleAddTodo} />
       </div>
       <ShoppingItems
         todos={todos.filter((todo) =>
-          selectedCategory ? todo.category === selectedCategory : true
+          todo.text.toLowerCase().includes(search.toLowerCase()) &&
+          (selectedCategory ? todo.category === selectedCategory : true)
         )}
         onToggleTodo={handleToggleTodo}
         onRemoveTodo={handleRemoveTodo}

@@ -1,12 +1,13 @@
 import * as React from "react";
-import Search from "./Search";
 
 interface HeaderProps {
   categories: string[];
   onCategoryFilter: (category: string) => void;
+  onSearchChange: (search: string) => void;
+  search: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ categories, onCategoryFilter }) => {
+const Header: React.FC<HeaderProps> = ({ categories, onCategoryFilter, onSearchChange, search }) => {
   const handleCategoryFilterChange = (category: string) => {
     onCategoryFilter(category);
   };
@@ -14,17 +15,17 @@ const Header: React.FC<HeaderProps> = ({ categories, onCategoryFilter }) => {
   return (
     <div id="title-container">
       <div id="title">
+        <img src="./src/assets/shopping.svg" alt="Shopping List" />
         <h1>Shopping List</h1>
       </div>
       <div id="filters">
-        <button onClick={() => handleCategoryFilterChange("")}>Todas</button>
+        <button onClick={() => handleCategoryFilterChange("")}>Todos</button>
         {categories.map((category) => (
           <button key={category} onClick={() => handleCategoryFilterChange(category)}>
             {category}
           </button>
         ))}
       </div>
-      <Search search="" setSearch={() => {}} /> {}
     </div>
   );
 };

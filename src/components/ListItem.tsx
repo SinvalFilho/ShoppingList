@@ -6,8 +6,9 @@ interface ListItemProps {
   text: string;
   completed: boolean;
   category: string;
+  quantity: number;
   onToggle: () => void;
-  onRemove: () => void;
+  onRemove: (id: number) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -15,6 +16,7 @@ const ListItem: React.FC<ListItemProps> = ({
   text,
   completed,
   category,
+  quantity,
   onToggle,
   onRemove,
 }) => {
@@ -32,17 +34,17 @@ const ListItem: React.FC<ListItemProps> = ({
         onChange={onToggle}
       />
       <span style={{ textDecoration: completed ? "line-through" : "none" }}>
-        {text} - {category} {/* Renderize  */}
+        {text} - {quantity} {category} {/* categoria */}
       </span>
-      {/*lembrete */}
+      {/* Lembrete */}
       <input
         type="text"
         value={reminder}
         onChange={handleReminderChange}
         placeholder="Adicione um lembrete"
       />
-      {/* remoção */}
-      <button onClick={onRemove}>Remover</button>
+      {/* Remoção */}
+      <button onClick={() => onRemove(id)}>Remover</button>
     </li>
   );
 };
