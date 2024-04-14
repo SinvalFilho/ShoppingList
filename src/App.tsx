@@ -1,7 +1,9 @@
+// App.tsx
+
 import { useState } from "react";
-import "../src/App.css";
-import Search from "./components/Search";
-import { Check } from "@phosphor-icons/react";
+import Header from "./components/Header";
+import AddItemForm from "./components/AddItemForm";
+import ShoppingItems from "./components/ShoppingItems";
 
 interface Todo {
   id: number;
@@ -9,24 +11,17 @@ interface Todo {
   completed: boolean;
 }
 
-export default function App() {
+const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [inputText, setInputText] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-  };
-
-  const handleAddTodo = () => {
-    if (inputText.trim() !== "") {
+  const handleAddTodo = (text: string) => {
+    if (text.trim() !== "") {
       const newTodo: Todo = {
         id: todos.length + 1,
-        text: inputText.trim(),
+        text: text.trim(),
         completed: false,
       };
       setTodos([...todos, newTodo]);
-      setInputText("");
     }
   };
 
@@ -38,52 +33,23 @@ export default function App() {
     );
   };
 
-  const filteredTodos = todos.filter((todo) =>
-    todo.text.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleRemoveTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
 
   return (
     <div id="container">
-      <div id="title-container">
-        <div id="title">
-          <img src="./src/assets/shopping.svg" alt="/src/assets/shopping.svg" />
-          <h1>Shopping List</h1>
-        </div>
-        <Search search={search} setSearch={setSearch} />
-      </div>
-
+      <Header />
       <div id="task-write">
-        <input
-          type="text"
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder="Adicione uma nova compra"
-        />
-
-        <button onClick={handleAddTodo}>
-          <Check size={32} />
-        </button>
+        <AddItemForm onAddTodo={handleAddTodo} />
       </div>
-
-      <ul>
-        {filteredTodos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              id="input-tasks"
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggleTodo(todo.id)}
-            />
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through"  : "none",
-              }}
-            >
-              {todo.text}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <ShoppingItems
+        todos={todos}
+        onToggleTodo={handleToggleTodo}
+        onRemoveTodo={handleRemoveTodo}
+      />
     </div>
   );
-}
+};
+
+export default App;
