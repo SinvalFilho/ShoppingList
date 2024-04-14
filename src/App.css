@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: DM SANS, sans-serif;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#container #title-container #title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#container #title-container #title h1 {
+  cursor: context-menu;
+}
+#container #title-container img {
+  height: 100px;
+  width: 100px;
+}
+#container #task-write {
+  display: flex;
+  margin-top: 50px;
+  height: 50px;
+  gap: 5px;
+}
+#container #task-write input {
+  border-radius: 7px;
+  min-width: 350px;
+  padding-left: 5px;
+  border: 2px solid #000;
+  font-size: 16px;
+}
+#container #task-write input::placeholder {
+  color: #000;
+}
+#container #task-write input:focus {
+  border: 3px solid #1dcece;
+  transition: all 0.1s;
+}
+#container #task-write button {
+  border-radius: 7px;
+  width: 50px;
+  background-color: #1dcece;
+  transition: all 0.1s;
+  cursor: pointer;
+  border: 2px solid #000;
+}
+#container #task-write button:hover {
+  opacity: 0.7;
+}
+#container ul {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+#container ul li {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  border: 1px solid #000;
+  height: 45px;
+  align-items: center;
+  border-radius: 7px;
+  width: 400px;
+  padding-left: 5px;
+}
+
+.search {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.search input {
+  border-radius: 5px;
+  min-width: 200px;
+  height: 25px;
+  padding-left: 5px;
+  margin-left: 10px;
+  border: 2px solid #000;
+}
+
+/*# sourceMappingURL=App.css.map */
