@@ -1,13 +1,3 @@
-```js
-export default {
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-
 importações necessarias :
 npm install -g sass  
 npm i @phosphor-icons/react
@@ -24,4 +14,4 @@ components:
 |_ ListItem.tsx
 |_ Search.tsx
 
-<img src="./Image.jpg>
+![Image](https://github.com/SinvalFilho/ShoppingList/assets/87092974/92bb9092-2077-4622-b2cc-64d80ddc24d1)
