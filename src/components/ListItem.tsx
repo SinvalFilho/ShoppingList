@@ -1,5 +1,7 @@
 import { useState } from "react";
 import * as React from "react";
+import '../App.css';
+import { Trash } from "@phosphor-icons/react";
 
 interface ListItemProps {
   id: number;
@@ -38,13 +40,16 @@ const ListItem: React.FC<ListItemProps> = ({
       </span>
       {/* Lembrete */}
       <input
+        id="input-lembrete"
         type="text"
         value={reminder}
         onChange={handleReminderChange}
         placeholder="Adicione um lembrete"
       />
       {/* Remoção */}
-      <button onClick={() => onRemove(id)}>Remover</button>
+      <button id="remover" onClick={() => onRemove(id)}>
+        <Trash size={25}/>
+      </button>
     </li>
   );
 };

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import QuantityInput from "./QuantityInput";
+import '../App.css';
+import { Check } from "@phosphor-icons/react";
+import '../App.css';
 
 interface AddItemFormProps {
   onAddTodo: (text: string, category: string, quantity: number) => void;
@@ -34,6 +37,7 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onAddTodo }) => {
   return (
     <>
       <input
+        id="input-compra"
         type="text"
         value={inputText}
         onChange={handleInputChange}
@@ -47,7 +51,9 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onAddTodo }) => {
         <option value="Outros">Outros</option>
       </select>
       <QuantityInput quantity={quantity} onChange={handleQuantityChange} />
-      <button onClick={handleAddClick}>Adicionar</button>
+      <button onClick={handleAddClick}>
+        <Check size={30}/>
+      </button>
     </>
   );
 };

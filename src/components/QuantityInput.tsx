@@ -1,4 +1,5 @@
 import * as React from "react";
+import '../App.css';
 
 interface QuantityInputProps {
   quantity: number;
@@ -13,6 +14,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({ quantity, onChange }) => 
 
   return (
     <input
+      id="quantity-input"
       type="number"
       value={quantity}
       onChange={handleQuantityChange}
