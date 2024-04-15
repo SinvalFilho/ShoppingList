@@ -23,3 +23,5 @@ components:
 |_ ShoppingItems.tsx
 |_ ListItem.tsx
 |_ Search.tsx
+
+<img src="./Image.jpg>
